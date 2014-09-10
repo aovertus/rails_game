@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  devise_for :users
   resources :comments
   resources :games
   match 'auth/:provider/callback', to: 'sessions#create', via: [:get, :post]
