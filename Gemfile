@@ -44,6 +44,8 @@ gem 'taps'
 gem "omniauth"
 gem "omniauth-facebook", '1.4.0'
 gem "devise"
+gem "carrierwave"
+
 
 group :production do
   gem 'pg', '0.15.1'
