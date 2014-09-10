@@ -41,9 +41,9 @@ gem 'sdoc', '~> 0.4.0',          group: :doc
 gem 'tzinfo-data', platforms: [:mingw, :mswin]
 gem "twitter-bootstrap-rails"
 gem 'taps'
-gem "omniauth"
-gem "omniauth-facebook", '1.4.0'
-gem "devise"
+#gem "omniauth"
+#gem "omniauth-facebook", '1.4.0'
+#gem "devise"
 gem "carrierwave"
 
 group :production do
