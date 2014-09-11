@@ -1,5 +1,8 @@
-<h1>New comment</h1>
-
-<%= render 'form' %>
-
-<%= link_to 'Back', comments_path %>
+<%= form_for([@game, @game.comments.new]) do |f| %>
+  <div class="field">
+    <strong>New comment : </strong><%= f.text_field :text %><br/>   
+  </div>
+<div class="actions">
+<%= f.submit 'Add' %>
+</div>
+<% end %>

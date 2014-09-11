@@ -14,18 +14,8 @@
     <% @game.comments.each do |comment| %>
         <tr><td><%= comment.text %></td></tr>
     <% end %>
-        <tr><td>
-          <%= form_for(@comment=Comment.new) do |f| %>
-              <div class="field">
-                <%= f.text_field :text %><br/>
-                <%= f.hidden_field :game_id, :value => @game.id%>
-              </div>
-              <div class="actions">
-                <%= f.submit %>
-              </div>
-          <% end %>
-        </td></tr>
   </table>
+  <%= render :file => "app/views/comments/new"%>
 </p>
 
 
