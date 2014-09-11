@@ -1,6 +1,7 @@
 <%= form_for([@game, @game.comments.new]) do |f| %>
   <div class="field">
     <strong>New comment : </strong><%= f.text_field :text %><br/>   
+    <%= f.hidden_field :game_id, :value => @game.id%>
   </div>
 <div class="actions">
 <%= f.submit 'Add' %>

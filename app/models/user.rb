@@ -15,7 +15,7 @@ class User < ActiveRecord::Base
     return user if user && user.authenticated?(password)
   end 
   
-  def authenticate?(password)
+  def authenticated?(password)
     self.hashed_password ==encrypt(password)
   end
   

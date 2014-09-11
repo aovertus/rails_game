@@ -14,7 +14,6 @@ class CommentsController < ApplicationController
   # POST /comments.json
   def create
     @comment = Comment.new(comment_params)
-
     respond_to do |format|
       if @comment.save
         @game = Game.find(@comment.game_id)

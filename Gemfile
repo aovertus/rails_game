@@ -45,6 +45,7 @@ gem 'taps'
 #gem "omniauth-facebook", '1.4.0'
 #gem "devise"
 gem "carrierwave"
+gem 'activerecord-session_store'
 
 group :production do
   gem 'pg', '0.15.1'
