@@ -4,7 +4,7 @@
             <% @games.each_with_index do |game, index| %>
               <div class="col-6 col-sm-6 col-lg-4">
                   <table>
-						<%= image_tag game.image_url.to_s, :class => 'poster'%>
+						<%= image_tag game.image_url.to_s, :class => 'poster' if game.image? %>
                         <tr><td><strong>Title :</strong></td><td><%= game.title %></td></tr>
                         <tr><td><strong>Note :</strong></td><td><%= game.note %></td></tr>
                         <tr>
