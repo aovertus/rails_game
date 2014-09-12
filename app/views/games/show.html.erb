@@ -20,7 +20,7 @@
 
 
 
-<% if current_user && current_user.id==@game.user.id %>
+<% if @game.owned_by? current_user %>
 	<%= link_to 'Edit', edit_game_path(@game) %> 
 <% end %>
 <%= link_to 'Back', games_path %>

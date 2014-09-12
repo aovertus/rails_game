@@ -4,4 +4,9 @@ class Game < ActiveRecord::Base
   has_many :comments, :dependent => :nullify
   belongs_to :user
   mount_uploader :image, ImageUploader
+  
+  def owned_by?(owner)
+    return false unless owner.is_a? User
+    owner == user
+  end
 end
