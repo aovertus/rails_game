@@ -1,6 +1,6 @@
 class GamesController < ApplicationController
-  before_action :set_game, only: [:show, :edit, :update, :destroy]
-  before_filter :authenticate, :except => [:index, :show]
+  before_action :set_game, only: [:show, :edit, :update, :destroy, :notify_friend]
+  before_filter :authenticate, :except => [:index, :show, :notify_friend]
   # GET /games
   # GET /games.json
   def index
@@ -68,6 +68,11 @@ class GamesController < ApplicationController
     else
       redirect_to root_path, :alert => "Not permitted"
     end
+  end
+  
+  def notify_friend
+    Notifier.email_friend(@game, params[:name], params[:email]).deliver
+    redirect_to @game, :notice => "Mail sended successfully"
   end
 
   private

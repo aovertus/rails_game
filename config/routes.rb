@@ -1,8 +1,16 @@
 Rails.application.routes.draw do
   resources :games do
     resources :comments
+    member do
+      post :notify_friend
+    end
   end
-  resources :users
+  resources :users do
+    member do 
+      post :sign_up_mail
+    end
+  end
+
   resource :session
   match "/login" => "sessions#new", :as => "login", via: [:get, :post]
   match "/logout" => "sessions#destroy", :as => "logout", via: [:get, :post]
