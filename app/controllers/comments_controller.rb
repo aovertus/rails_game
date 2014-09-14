@@ -1,5 +1,6 @@
 class CommentsController < ApplicationController
   before_action :set_comment, only: [:show, :edit, :update, :destroy]
+  before_filter :authenticate
   # GET /comments/1
   # GET /comments/1.json
   def show
@@ -14,7 +15,6 @@ class CommentsController < ApplicationController
   # POST /comments.json
   def create
     @comment = current_user.comments.new(comment_params)
-    @comment.game = Game.find(@comment.game_id)
     respond_to do |format|
       if @comment.save
         format.html { redirect_to @comment.game, notice: 'Comment was successfully created.' }
