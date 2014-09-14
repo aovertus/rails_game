@@ -7,6 +7,9 @@
   <%= csrf_meta_tags %>
 </head>
 <body>
+	<div class="banner">
+		<center><%= image_tag("banner.png", :alt =>"banner", :class => "img-banner")%></center>
+	</div>
 <% if notice %>
   <p class="alert alert-success"><%= notice %></p>
 <% end %>
@@ -22,6 +25,8 @@
 <div class="container">
     <%= yield %>
 </div>
-
+	<div class="footer">
+		<center><%= image_tag("footer.png", :alt =>"banner", :class => "img-footer")%></center>
+	</div>
 </body>
 </html>

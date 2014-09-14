@@ -1,10 +1,12 @@
 <div class="row row-offcanvas row-offcanvas-right">
   <div class="col-xs-12 col-sm-9">
       <h1>Listing games</h1>
+      <div ="row">
             <% @games.each_with_index do |game, index| %>
+              
               <div class="col-6 col-sm-6 col-lg-4">
                   <table>
-						<%= image_tag game.image_url.to_s, :class => 'poster' if game.image? %>
+						<%= link_to image_tag(game.image_url.to_s, :class => 'poster'), game_path(game.id)  if game.image?%>
                         <tr><td><strong>Title :</strong></td><td><%= game.title %></td></tr>
                         <tr><td><strong>Note :</strong></td><td><%= game.note %></td></tr>
                         <tr>
@@ -19,7 +21,7 @@
                    </table>
                </div>
             <% end %>
-
+		 </div>			              
         <br>
     </div>
 </div>

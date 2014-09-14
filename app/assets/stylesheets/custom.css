@@ -1,8 +1,17 @@
 .poster{
 	max-width: 80px;
 	max-height: 200px;
+	border-radius:10px 10px;
 }
 
 body {
 	background-image:url("background.png")
+}
+
+
+.banner {
+	background-color : #5494fe;
+}
+.footer {
+	background-color : #000000;
 }
