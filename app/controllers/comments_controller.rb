@@ -14,7 +14,6 @@ class CommentsController < ApplicationController
   # POST /comments.json
   def create
     @comment = current_user.comments.new(comment_params)
-    @comment.game = Game.find(@comment.game_id)
     respond_to do |format|
       if @comment.save
         format.html { redirect_to @comment.game, notice: 'Comment was successfully created.' }
