@@ -1,6 +1,9 @@
 class SessionsController < ApplicationController
   def create 
-    if user = User.authenticate(params[:email], params[:password])
+    if  user = User.from_omniauth(env["omniauth.auth"])
+      session[:user_id] = user.id
+      redirect_to root_url
+    elsif user = User.authenticate(params[:email], params[:password])
       session[:user_id] = user.id
       redirect_to root_path, :notice => "Successfully connected"
     else

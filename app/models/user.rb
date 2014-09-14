@@ -19,6 +19,19 @@ class User < ActiveRecord::Base
     self.hashed_password ==encrypt(password)
   end
   
+  
+
+  def self.from_omniauth(auth)
+    where(provider: auth.provider).first_or_initialize.tap do |user|
+      user.provider = auth.provider
+      user.name = auth.info.name
+      user.oauth_token = auth.credentials.token
+      user.oauth_expires_at = Time.at(auth.credentials.expires_at)
+      user.email = auth.info.email
+      user.save!
+    end
+  end
+  
   protected 
     def encrypt_new_password
       return if password.blank?

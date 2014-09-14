@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140914133547) do
+ActiveRecord::Schema.define(version: 20140914182753) do
 
   create_table "comments", force: true do |t|
     t.string   "text"
@@ -45,6 +45,10 @@ ActiveRecord::Schema.define(version: 20140914133547) do
     t.string   "hashed_password"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "provider"
+    t.string   "name"
+    t.string   "oauth_token"
+    t.datetime "oauth_expires_at"
   end
 
 end
