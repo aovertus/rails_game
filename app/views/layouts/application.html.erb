@@ -19,20 +19,23 @@
 
 
 <div id="user_nav">
-  <% if current_user %>
-    Signed in as <strong><%= current_user.name %></strong>!
-    <%= link_to "Sign out", signout_path, id: "sign_out" %>
-  <% else %>
-    <%= link_to "Sign in with Facebook", "/auth/facebook", id: "sign_in" %>
-  <% end %>
+	<% unless current_user %>
+		<%= link_to "Sign in with Facebook", "/auth/facebook", id: "sign_in" %> <br/>
+		<%= link_to "Sign in", login_path %> <br/>
+		<%= link_to "Sign up", new_user_path %>
+	<% else %>
+		<% if current_user.provider %>
+			Signed in as <strong><%= current_user.name %></strong>! <%= link_to 'sign out', logout_path%>
+		<% else %>
+			Bonjour, <%= current_user.email %>, <%= link_to 'sign out', logout_path%>
+		<% end %>
+	<% end %>
+</div>
+			
+			
+		
 </div>
 
-<br/>
-<% if logged_in?%>
-	Bonjour, <%= current_user.email %>, <%= link_to 'log out', logout_path%>
-<% else %>
-	<%= link_to "Log in", login_path %> or <%= link_to "Sign up", new_user_path %>
-<% end %>
 <div class="container">
     <%= yield %>
 </div>
