@@ -47,6 +47,7 @@ gem 'taps'
 gem "carrierwave"
 gem 'activerecord-session_store'
 gem 'omniauth-facebook'
+gem 'bootstrap_form'
 
 group :production do
   gem 'pg', '0.15.1'

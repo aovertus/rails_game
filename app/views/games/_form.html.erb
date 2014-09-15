@@ -4,7 +4,7 @@
       <h2><%= pluralize(@game.errors.count, "error") %> prohibited this game from being saved:</h2>
 
       <ul>
-      <% @game.errors.full_messages.each do |message| %>
+      <% @game.errors.full_messages.each do |message| %>btn btn-default
         <li><%= message %></li>
       <% end %>
       </ul>
@@ -22,6 +22,6 @@
   	<%= f.hidden_field :user_id, :value => session[:user_id]%>
   </div>	
   <div class="actions">
-    <%= f.submit %>
+    <%= f.submit "create ", :class => "btn btn-default" %>
   </div>
 <% end %>

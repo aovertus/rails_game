@@ -1,4 +1,4 @@
-<%= form_for(@user) do |f| %>
+<%= bootstrap_form_for(@user) do |f| %>
   <% if @user.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(@user.errors.count, "error") %> prohibited this game from being saved:</h2>
@@ -12,17 +12,14 @@
   <% end %>
 
   <div class="field">
-    <%= f.label :email %>
     <%= f.text_field :email %><br>
 
-    <%= f.label :password %>
     <%= f.password_field :password %><br>
     
-   	<%= f.label :confirm_password %>
     <%= f.password_field :confirm_password %><br>
   
   </div>	
   <div class="actions">
-    <%= f.submit %>
+    <%= f.submit "register", :class => 'btn btn-default' %>
   </div>
 <% end %>
