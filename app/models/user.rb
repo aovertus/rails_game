@@ -9,7 +9,7 @@ class User < ActiveRecord::Base
                     :format => {:with => /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\z/i}
 
   before_save :encrypt_new_password
-  after_create :sign_up_mail
+  #after_create :sign_up_mail
   
   def self.authenticate(email,password)
     user = find_by_email(email)
