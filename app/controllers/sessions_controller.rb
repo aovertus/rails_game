@@ -1,6 +1,7 @@
 class SessionsController < ApplicationController
   def create 
-    if  user = User.from_omniauth(env["omniauth.auth"])
+    if env["omniauth.auth"]
+      user = User.from_omniauth(env["omniauth.auth"])
       session[:user_id] = user.id
       redirect_to root_url
     elsif user = User.authenticate(params[:email], params[:password])
