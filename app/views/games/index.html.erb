@@ -1,27 +1,21 @@
 <div class="row row-offcanvas row-offcanvas-right">
-  <div class="col-xs-12 col-sm-9">
       <h1>Listing games</h1>
-      <div ="row">
+      <table class="table">
             <% @games.each_with_index do |game, index| %>
-              
-              <div class="col-6 col-sm-6 col-lg-4">
-                  <table>
-						<%= link_to image_tag(game.image_url.to_s, :class => 'poster'), game_path(game.id)  if game.image?%>
-                        <tr><td><strong>Title :</strong></td><td><%= game.title %></td></tr>
-                        <tr><td><strong>Note :</strong></td><td><%= game.note %></td></tr>
-                        <tr>
-                            <td><strong>Actions :</strong></td>
-                            <td><%= link_to 'Show ', game %></td>
-                        <% if game.owned_by? current_user %>    
-                            <td><%= link_to 'Edit ', edit_game_path(game) %></td>
-                            <td><%= link_to 'Destroy', game, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-                        <% end %>
-                        </tr>
-
-                   </table>
-               </div>
+            	<tr>
+					 <% if game.image? %><td><%= link_to image_tag(game.image_url.to_s, :class => 'poster'), game_path(game.id)%></td> <% end %>
+					  <td>
+					  	<strong>Title :</strong><%= game.title %><br/>
+	                    <strong>Note :</strong><%= game.note %><br/>
+	                    <strong>Actions :</strong>
+	                    	<%= link_to 'Show ', game %>
+	                        <% if game.owned_by? current_user %>    
+	                            <%= link_to 'Edit ', edit_game_path(game) %>
+	                            <%= link_to 'Destroy', game, method: :delete, data: { confirm: 'Are you sure?' } %>
+	                        <% end %>
+                </tr>  
             <% end %>
-		 </div>			              
+       </table>		              
         <br>
     </div>
 </div>

@@ -1,18 +1,16 @@
-<%= image_tag @game.image_url.to_s %>
-<p>
-  <strong>Title:</strong>
-  <%= @game.title %>
-</p>
-
-<p>
-  <strong>Note:</strong>
-  <%= @game.note %>
-</p>
-<p>
+<table class="table">
+ <% if @game.image? %><tr><td> <%= image_tag @game.image_url.to_s %> </td></tr><% end %>
+  <tr>
+  	<td><strong>Title :</strong> <%= @game.title %></td>
+  </tr>
+  <tr>
+  	<td><strong>Note :</strong> <%= @game.note %></td>
+  </tr>
+</table>
 <strong >Comments :</strong>
-  <table>
+  <table class="table">
     <% @game.comments.each do |comment| %>
-        <tr><td><%= comment.text %></td></tr>
+        <tr><td>"<%= comment.text %>"<cite> by <%= comment.user.email %></cite></td></tr>
     <% end %>
   </table>
   <%= render :file => "app/views/comments/new"%>
