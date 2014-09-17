@@ -8,40 +8,69 @@
   <%= csrf_meta_tags %>
 </head>
 <body>
+    <div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target=".navbar-collapse">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <%= link_to "Rails Game", root_path, :class =>"navbar-brand" %>
+        </div>
+        <div class="navbar-collapse collapse">
+          <ul class="nav navbar-nav">
+            <li><%= link_to "Home", root_path %></li> <!-- class="active"-->
+            <li> <%= link_to "Sign up", new_user_path %></li>
+            <!--<li><a href="#about">About</a></li>
+            <li><a href="#contact">Contact</a></li>
+            <li class="dropdown">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown">Dropdown <span class="caret"></span></a>
+              <ul class="dropdown-menu" role="menu">
+                <li><a href="#">Action</a></li>
+                <li><a href="#">Another action</a></li>
+                <li><a href="#">Something else here</a></li>
+                <li class="divider"></li>
+                <li class="dropdown-header">Nav header</li>
+                <li><a href="#">Separated link</a></li>
+                <li><a href="#">One more separated link</a></li>
+              </ul>
+            </li>-->
+          </ul>
+          <ul class="nav navbar-nav navbar-right">
+	    	<% unless current_user %>
+				<li><%= link_to "Sign in with Facebook", "/auth/facebook", id: "sign_in" %> <li/>
+				<li><%= link_to "Sign in", login_path %> <li/>
+			<% else %>
+				<% if current_user.provider %>
+					<li><%= link_to "Signed in as "+current_user.name, edit_user_path(current_user) %></li>
+				<% else %>
+					<li><%= link_to "Signed in as "+current_user.email, edit_user_path(current_user) %></li>
+				<% end %>
+				<li><%= link_to 'Sign out', logout_path%> </li>
+			<% end %>
+          </ul>
+        </div><!--/.nav-collapse -->
+      </div>
+    </div>
+<div class="main">
 	<div class="banner">
 		<center><%= image_tag("banner.png", :alt =>"banner", :class => "img-banner")%></center>
 	</div>
-<% if notice %>
-  <p class="alert alert-success"><%= notice %></p>
-<% end %>
-<% if alert %>
-  <p class="alert alert-danger"><%= alert %></p>
-<% end %>
-
-
-<div id="user_nav">
-	<% unless current_user %>
-		<%= link_to "Sign in with Facebook", "/auth/facebook", id: "sign_in" %> <br/>
-		<%= link_to "Sign in", login_path %> <br/>
-		<%= link_to "Sign up", new_user_path %>
-	<% else %>
-		<% if current_user.provider %>
-			Signed in as <strong><%= current_user.name %></strong>! <%= link_to 'sign out', logout_path%>
-		<% else %>
-			Bonjour, <%= current_user.email %>, <%= link_to 'sign out', logout_path%>
-		<% end %>
+	<% if notice %>
+	  <p class="alert alert-success"><%= notice %></p>
 	<% end %>
-</div>
-			
-			
-		
-</div>
-
-<div class="container">
-    <%= yield %>
-</div>
+	<% if alert %>
+	  <p class="alert alert-danger"><%= alert %></p>
+	<% end %>
+	
+	<div class="container">
+	    <%= yield %>
+	</div>
 	<div class="footer">
 		<center><%= image_tag("footer.png", :alt =>"banner", :class => "img-footer")%></center>
 	</div>
+</div>
 </body>
 </html>
