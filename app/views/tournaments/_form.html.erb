@@ -1,18 +1,8 @@
 <%= bootstrap_form_for(@tournament) do |f| %>
-  <% if @tournament.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@tournament.errors.count, "error") %> prohibited this game from being saved:</h2>
-
-      <ul>
-      <% @tournament.errors.full_messages.each do |message| %>btn btn-default
-        <li><%= message %></li>
-      <% end %>
-      </ul>
-    </div>
-  <% end %>
-
   <div class="field">
     <%= f.text_field :name %>
+    <%= f.text_field :address %>
+    
 
     <%= f.date_field :start_at %>
     <%= f.date_field :end_at %>
@@ -20,6 +10,10 @@
     <%= f.number_field :max_player %>
   </div>	
   <div class="actions">
-    <%= f.submit "create ", :class => "btn btn-default" %>
+  	<% if @tournament.new_record? %>
+  		<%= f.submit "Create", :class => "btn btn-default" %>
+  	<% else%>
+  	 	<%= f.submit "Update", :class => "btn btn-default" %>
+  	<%end%>
   </div>
 <% end %>

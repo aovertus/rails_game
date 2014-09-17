@@ -1,8 +1,24 @@
 class TournamentsController < ApplicationController
-  
+  before_action :set_game, only: [:show, :edit, :update, :destroy]
   def index
     @tournaments = Tournament.all
   end
+  
+  def show
+  end
+  
+  def update
+    respond_to do |format|
+      if @tournament.update(tournament_params)
+        format.html { redirect_to tournaments_path, notice: 'Tournament was successfully updated.' }
+        format.json { render :show, status: :ok, location: @tournament }
+      else
+        format.html { render :edit }
+        format.json { render json: @tournament.errors, status: :unprocessable_entity }
+      end
+   end
+  end
+
   
   def new
     @tournament = Tournament.new
@@ -22,10 +38,13 @@ class TournamentsController < ApplicationController
     end
   end
   
-   protected 
+   private
+    def set_game
+      @tournament = Tournament.find(params[:id])
+    end
    
     def tournament_params
-      params.require(:tournament).permit(:name, :start_at, :end_at, :place, :max_player)
+      params.require(:tournament).permit(:name, :start_at, :end_at, :address, :longitude, :latitude, :max_player)
     end
   
 end

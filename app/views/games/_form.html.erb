@@ -20,6 +20,10 @@
   	<%= f.hidden_field :user_id, :value => session[:user_id]%>
   </div>	
   <div class="actions">
-    <%= f.submit "create ", :class => "btn btn-default" %>
+    <% if @game.new_record? %>
+  		<%= f.submit "Create", :class => "btn btn-default" %>
+  	<% else%>
+  	 	<%= f.submit "Update", :class => "btn btn-default" %>
+  	<%end%>
   </div>
 <% end %>
