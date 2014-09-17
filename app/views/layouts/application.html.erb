@@ -22,7 +22,7 @@
         <div class="navbar-collapse collapse">
           <ul class="nav navbar-nav">
             <li><%= link_to "Home", root_path %></li> <!-- class="active"-->
-            <li> <%= link_to "Sign up", new_user_path %></li>
+            <li><%= link_to "Listing Games", games_path %> </li>
             <!--<li><a href="#about">About</a></li>
             <li><a href="#contact">Contact</a></li>
             <li class="dropdown">
@@ -40,6 +40,7 @@
           </ul>
           <ul class="nav navbar-nav navbar-right">
 	    	<% unless current_user %>
+	    		<li><%= link_to "Sign up", new_user_path %></li>
 				<li><%= link_to "Sign in with Facebook", "/auth/facebook", id: "sign_in" %> <li/>
 				<li><%= link_to "Sign in", login_path %> <li/>
 			<% else %>
