@@ -8,6 +8,9 @@
     <%= f.date_field :end_at %>
     
     <%= f.number_field :max_player %>
+    
+    <%= collection_select(:title, :id, @games, :id, :title) %>
+    
   </div>	
   <div class="actions">
   	<% if @tournament.new_record? %>
@@ -17,3 +20,5 @@
   	<%end%>
   </div>
 <% end %>
+
+

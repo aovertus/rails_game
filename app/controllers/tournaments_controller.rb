@@ -1,5 +1,6 @@
 class TournamentsController < ApplicationController
   before_action :set_game, only: [:show, :edit, :update, :destroy]
+  
   def index
     @tournaments = Tournament.all
   end
@@ -22,11 +23,11 @@ class TournamentsController < ApplicationController
   
   def new
     @tournament = Tournament.new
+    @games = Game.all
   end
   
   def create
     @tournament = Tournament.new(tournament_params)
-
     respond_to do |format|
       if @tournament.save
         format.html { redirect_to @tournament, notice: 'Tournament was successfully created.' }
@@ -44,7 +45,8 @@ class TournamentsController < ApplicationController
     end
    
     def tournament_params
-      params.require(:tournament).permit(:name, :start_at, :end_at, :address, :longitude, :latitude, :max_player)
+      params.require(:tournament).permit(:name, :start_at, :end_at, :address, :longitude, :latitude, :max_player,
+        :games_attributes => [:id, :title])
     end
   
 end
