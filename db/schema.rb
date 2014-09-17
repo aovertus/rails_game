@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140917143736) do
+ActiveRecord::Schema.define(version: 20140917145400) do
 
   create_table "comments", force: true do |t|
     t.string   "text"
@@ -58,6 +58,7 @@ ActiveRecord::Schema.define(version: 20140917143736) do
     t.string   "place"
     t.integer  "max_player"
     t.integer  "user_id"
+    t.string   "name"
   end
 
   create_table "users", force: true do |t|
