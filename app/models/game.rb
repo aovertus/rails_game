@@ -3,6 +3,8 @@ class Game < ActiveRecord::Base
   validates_numericality_of :note, :greater_than_or_equal_to => 0, less_than_or_equal_to: 10
   has_many :comments, :dependent => :nullify
   belongs_to :user
+  has_many :tournament_players
+  has_many :tournaments, through: :tournament_players
   mount_uploader :image, ImageUploader
   
   def owned_by?(owner)
