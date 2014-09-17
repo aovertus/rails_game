@@ -1,0 +1,13 @@
+<div class="row row-offcanvas row-offcanvas-right">
+      <h1>Listing tournaments</h1>
+      <table class="table">
+            <% @tournaments.each_with_index do |tournament, index| %>
+            	<tr>
+					tournament.name
+                </tr>  
+            <% end %>
+       </table>		              
+        <br>
+    </div>
+    <%= link_to "Add tournament", new_tournament_path %>
+</div>
