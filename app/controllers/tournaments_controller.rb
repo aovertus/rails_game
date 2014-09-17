@@ -25,7 +25,7 @@ class TournamentsController < ApplicationController
    protected 
    
     def tournament_params
-      params.require(:tournament).permit(:name, :place, :max_player)
+      params.require(:tournament).permit(:name, :start_at, :end_at, :place, :max_player)
     end
   
 end
