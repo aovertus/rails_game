@@ -3,7 +3,8 @@
       <table class="table">
             <% @tournaments.each_with_index do |tournament, index| %>
             	<tr>
-					tournament.name
+					<td><%= link_to tournament.name, tournament_path(tournament.id) %>, <%= tournament.address %></td>
+					<td><%= image_tag "http://maps.google.com/maps/api/staticmap?size=450x300&sensor=false&zoom=16&markers=#{tournament.latitude}%2C#{tournament.longitude}" %></td>
                 </tr>  
             <% end %>
        </table>		              
