@@ -1,5 +1,6 @@
 class TournamentsController < ApplicationController
-  before_action :set_game, only: [:show, :edit, :update, :destroy]
+  before_action :set_tournament, only: [:show, :edit, :update, :destroy]
+  before_action :set_games, only: [:show, :edit, :update, :new]
   before_filter :authenticate
   
   def index
@@ -24,11 +25,13 @@ class TournamentsController < ApplicationController
   
   def new
     @tournament = Tournament.new()
-    @games = Game.all
   end
   
   def create
-    @tournament = current_user.tournaments.new(tournament_params)
+    @tournament = Tournament.new(tournament_params)
+    @tournament.user = current_user #should be current_user.tournaments.new(tournament_params)
+    @games = Game.all
+    @tournament.games = @games
     respond_to do |format|
       if @tournament.save
         format.html { redirect_to @tournament, notice: 'Tournament was successfully created.' }
@@ -41,9 +44,13 @@ class TournamentsController < ApplicationController
   end
   
    private
-    def set_game
+    def set_tournament
       @tournament = Tournament.find(params[:id])
     end
+   
+   def set_games
+     @games = Game.all
+   end
    
     def tournament_params
       params.require(:tournament).permit(:name, :start_at, :end_at, :address, :longitude, :latitude, :max_player,

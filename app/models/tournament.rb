@@ -1,5 +1,5 @@
 class Tournament < ActiveRecord::Base
-
+  belongs_to :user
   has_many :tournament_players
   has_many :tournament_games
   has_many :users, through: :tournament_players
