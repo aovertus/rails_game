@@ -22,12 +22,12 @@ class TournamentsController < ApplicationController
 
   
   def new
-    @tournament = Tournament.new
+    @tournament = Tournament.new()
     @games = Game.all
   end
   
   def create
-    @tournament = Tournament.new(tournament_params)
+    @tournament = current_user.tournaments.new(tournament_params)
     respond_to do |format|
       if @tournament.save
         format.html { redirect_to @tournament, notice: 'Tournament was successfully created.' }

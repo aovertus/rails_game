@@ -4,6 +4,8 @@ class User < ActiveRecord::Base
   attr_accessor :password
   has_many :games, :dependent => :nullify
   has_many :comments, :dependent => :nullify
+  has_many :tournament_players
+  has_many :tournaments, through: :tournament_players
   validates :email, :uniqueness => true,
                     :length => {:within => 5..50},
                     :format => {:with => /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\z/i}

@@ -11,7 +11,7 @@ Rails.application.routes.draw do
     end
   end
   resources :tournaments do
-    get 'games', on: :member
+    get 'tournaments_players', on: :member
   end
   resource :session
   match "/login" => "sessions#new", :as => "login", via: [:get, :post]
