@@ -49,6 +49,7 @@ gem 'activerecord-session_store'
 gem 'omniauth-facebook'
 gem 'bootstrap_form'
 gem "geocoder"
+
 gem "cocoon"
 
 group :production do
