@@ -9,7 +9,7 @@
     
     <%= f.number_field :max_player %>
     
-    <%= collection_select(:title, :id, @games, :id, :title) %>
+    <%= collection_select(:tournament_game, :game_id, @games, :id, :title) %>
     
   </div>	
   <div class="actions">

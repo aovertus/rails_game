@@ -30,10 +30,9 @@ class TournamentsController < ApplicationController
   def create
     @tournament = Tournament.new(tournament_params)
     @tournament.user = current_user #should be current_user.tournaments.new(tournament_params)
-    @games = Game.all
-    @tournament.games = @games
+    @tournament.games.push(Game.find(params[:tournament_game][:game_id])) 
     respond_to do |format|
-      if @tournament.save
+      if @tournament.save 
         format.html { redirect_to @tournament, notice: 'Tournament was successfully created.' }
         format.json { render :show, status: :created, location: @tournament }
       else
@@ -55,6 +54,7 @@ class TournamentsController < ApplicationController
     def tournament_params
       params.require(:tournament).permit(:name, :start_at, :end_at, :address, :longitude, :latitude, :max_player,
         :games_attributes => [:id, :title])
+      
     end
   
 end
