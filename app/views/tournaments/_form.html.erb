@@ -9,8 +9,21 @@
     
     <%= f.number_field :max_player %>
     
-    <%= collection_select(:tournament_game, :game_id, @games, :id, :title) %>
+
     
+	Game played : 
+    <table class="table">
+    <% if @tournament.new_record? %>
+	    <%= collection_check_boxes(:tournament_game, :game_id, @games, :id, :title) do |b| %>
+	  		<tr><td><%= b.label { b.check_box + b.text} %> </td></tr>
+		<% end %>
+	<% else %>
+		<% @tournament.games.each do |game| %>
+			<tr><td><%= game.title %></td></tr>
+		<% end %>
+	<% end %>	
+	</table>
+
   </div>	
   <div class="actions">
   	<% if @tournament.new_record? %>

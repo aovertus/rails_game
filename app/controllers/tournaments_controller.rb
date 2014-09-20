@@ -30,7 +30,9 @@ class TournamentsController < ApplicationController
   def create
     @tournament = Tournament.new(tournament_params)
     @tournament.user = current_user #should be current_user.tournaments.new(tournament_params)
+    params[:tournament_game][:game_id].reject! { |game| game.empty? }
     @tournament.games.push(Game.find(params[:tournament_game][:game_id])) 
+    
     respond_to do |format|
       if @tournament.save 
         format.html { redirect_to @tournament, notice: 'Tournament was successfully created.' }
