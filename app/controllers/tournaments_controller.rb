@@ -1,6 +1,6 @@
 class TournamentsController < ApplicationController
   before_action :set_tournament, only: [:show, :edit, :update, :destroy]
-  before_action :set_games, only: [:show, :edit, :update, :new]
+  before_action :set_games #, only: [:show, :edit, :update, :new]
   before_filter :authenticate
   
   def index
@@ -33,12 +33,12 @@ class TournamentsController < ApplicationController
     params[:tournament_game][:game_id].reject! { |game| game.empty? }
     @tournament.games.push(Game.find(params[:tournament_game][:game_id])) 
     
-    respond_to do |format|
-      if @tournament.save 
+    respond_to do |format| 
+      if @tournament.games.any? && @tournament.save
         format.html { redirect_to @tournament, notice: 'Tournament was successfully created.' }
         format.json { render :show, status: :created, location: @tournament }
       else
-        format.html { render :new }
+        format.html { redirect_to new_tournament_path, alert: "Unable to save, make sure you checked one or more games" }
         format.json { render json: @tournament.errors, status: :unprocessable_entity }
       end
     end

@@ -1,4 +1,4 @@
-<%= bootstrap_form_for(@tournament) do |f| %>
+<%= bootstrap_form_for(@tournament, :html => {:class => "form-horizontal"}) do |f| %>
   <div class="field">
     <%= f.text_field :name %>
     <%= f.text_field :address %>
@@ -7,19 +7,21 @@
     <%= f.date_select :start_at %>
     <%= f.date_select :end_at %>
     
-    <%= f.number_field :max_player %>
+    <%= f.select :max_player, options_for_select((8..64).step(8)) %> <!-- should step by 8 16 32 64 --> 
     
 
     
 	Game played : 
     <table class="table">
-    <% if @tournament.new_record? %>
-	    <%= collection_check_boxes(:tournament_game, :game_id, @games, :id, :title) do |b| %>
-	  		<tr><td><%= b.label { b.check_box + b.text} %> </td></tr>
-		<% end %>
-	<% else %>
-		<% @tournament.games.each do |game| %>
-			<tr><td><%= game.title %></td></tr>
+    <% if @games %>
+	    <% if @tournament.new_record? %>
+		    <%= collection_check_boxes(:tournament_game, :game_id, @games, :id, :title) do |b| %>
+		  		<tr><td><%= b.label { b.check_box + b.text} %> </td></tr>
+			<% end %>
+		<% else %>
+			<% @tournament.games.each do |game| %>
+				<tr><td><%= game.title %></td></tr>
+			<% end %>
 		<% end %>
 	<% end %>	
 	</table>

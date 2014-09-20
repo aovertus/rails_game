@@ -4,6 +4,12 @@
 	border-radius:10px 10px;
 }
 
+.google-map{
+	border-radius:5px 5px;
+	width: 250px;
+	max-height : 500px;
+} 
+
 body {
 	background-image:url("background.png")
 }
@@ -26,3 +32,4 @@ body {
   display: inline-block;
 
 }
+

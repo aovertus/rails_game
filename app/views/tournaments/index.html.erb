@@ -5,9 +5,11 @@
             	<tr>
 					<td>
 						Name : <%= link_to tournament.name, tournament_path(tournament.id) %> <br/> 
-						Address : <%= tournament.address %>
+						Address : <%= tournament.address %> <br/><br/>
+						Start : <%= tournament.start_at.to_time.strftime('%e %B %Y') %> <br/>
+						End  : <%= tournament.end_at.to_time.strftime('%e %B %Y') %>
 					</td>
-					<td><%= image_tag "http://maps.google.com/maps/api/staticmap?size=450x300&sensor=false&zoom=16&markers=#{tournament.latitude}%2C#{tournament.longitude}" %></td>
+					<td><%= image_tag "http://maps.google.com/maps/api/staticmap?size=450x300&sensor=false&zoom=16&markers=#{tournament.latitude}%2C#{tournament.longitude}", :class => "google-map" %></td>
                 </tr>  
             <% end %>
        </table>		              

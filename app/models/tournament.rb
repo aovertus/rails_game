@@ -7,4 +7,8 @@ class Tournament < ActiveRecord::Base
   geocoded_by :address
   after_validation :geocode, :if => :address_changed?
   accepts_nested_attributes_for :games
+
+  validates_presence_of :name, :address
+  validates_date :start_at, :on_or_after => lambda { Date.current }
+  validates_date :end_at, :on_or_after => lambda { :start_at }
 end
