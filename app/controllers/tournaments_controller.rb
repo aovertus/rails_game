@@ -1,5 +1,5 @@
 class TournamentsController < ApplicationController
-  before_action :set_tournament, only: [:show, :edit, :update, :destroy]
+  before_action :set_tournament, only: [:show, :edit, :update, :destroy, :subscription]
   before_action :set_games #, only: [:show, :edit, :update, :new]
   before_filter :authenticate
   
@@ -22,6 +22,15 @@ class TournamentsController < ApplicationController
    end
   end
 
+  def subscription
+     @tournament.users.push(current_user)
+     if @tournament.update(tournament_params)
+        format.html { redirect_to tournaments_path, notice: 'Subscription done !' }
+        format.json { render :show, status: :ok, location: @tournament }
+      else
+        format.html { redirect_to tournaments_path, alert: 'Error !' }
+      end
+  end
   
   def new
     @tournament = Tournament.new()
