@@ -10,9 +10,7 @@ Rails.application.routes.draw do
       post :sign_up_mail
     end
   end
-  resources :tournaments do
-    get 'tournaments_players', on: :member
-  end
+  resources :tournaments
   resource :session
   match "/login" => "sessions#new", :as => "login", via: [:get, :post]
   match "/logout" => "sessions#destroy", :as => "logout", via: [:get, :post]
@@ -24,8 +22,7 @@ Rails.application.routes.draw do
   match 'auth/failure', to: redirect('/'), via: [:get, :post]
   match 'signout', to: 'sessions#destroy', as: 'signout', via: [:get, :post]
   
-  #Subscription
-  get 'tournaments/:id', :to => 'tournaments#subscription', as: "subscription"
+
 
   # You can have the root of your site routed with "root"
   root 'games#index'
@@ -35,6 +32,9 @@ Rails.application.routes.draw do
 
   # Example of named route that can be invoked with purchase_url(id: product.id)
   #   get 'products/:id/purchase' => 'catalog#purchase', as: :purchase
+  
+  #Register
+  match "tournament/:id/register" => "tournaments#register", as: :tournament_register, via: [:get, :post]
 
   # Example resource route (maps HTTP verbs to controller actions automatically):
   #   resources :products
