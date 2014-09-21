@@ -1,7 +1,7 @@
 class TournamentsController < ApplicationController
   before_action :set_tournament, only: [:show, :edit, :update, :destroy, :register]
   before_action :set_games #, only: [:show, :edit, :update, :new]
-  before_filter :authenticate
+  before_filter :authenticate, except: [:show, :index]
   
   def index
     @tournaments = Tournament.all
@@ -42,8 +42,8 @@ class TournamentsController < ApplicationController
     @tournament = Tournament.new(tournament_params)
     @tournament.user = current_user #should be current_user.tournaments.new(tournament_params)
     params[:tournament_game][:game_id].reject! { |game| game.empty? }
-    @tournament.games.push(Game.find(params[:tournament_game][:game_id])) 
-    
+    @tournament.games.push(Game.find(params[:tournament_game][:game_id]))
+    @tournament.users.push(current_user) 
     respond_to do |format| 
       if @tournament.games.any? && @tournament.save
         format.html { redirect_to @tournament, notice: 'Tournament was successfully created.' }
@@ -66,7 +66,7 @@ class TournamentsController < ApplicationController
    
     def tournament_params
       params.require(:tournament).permit(:name, :start_at, :end_at, :address, :longitude, :latitude, :max_player,
-        :games_attributes => [:id, :title])
+        :games_attributes => [:id])
       
     end
   

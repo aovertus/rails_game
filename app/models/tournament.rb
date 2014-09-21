@@ -19,5 +19,8 @@ class Tournament < ActiveRecord::Base
       false
     end
   end 
-
+  
+  def is_admin?(tournament, user)
+    true if tournament.user == user
+  end
 end
