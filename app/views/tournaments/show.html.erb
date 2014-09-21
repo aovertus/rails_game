@@ -12,5 +12,6 @@
 		</ul>
 	</td></tr>
 </table>
-<% if @subscribe.nil? && @tournament.user != current_user %><p><%= link_to "Register to the tournament", tournament_register_path %></p><% end %>
+<% if @tournament.can_subscribe?(@tournament, current_user) %><p><%= link_to "Register to the tournament", tournament_register_path %></p> <%end%>
+
 <%= link_to 'Back', tournaments_path %>

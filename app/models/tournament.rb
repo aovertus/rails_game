@@ -11,4 +11,13 @@ class Tournament < ActiveRecord::Base
   validates_presence_of :name, :address
   validates_date :start_at, :on_or_after => lambda { Date.current }
   validates_date :end_at, :on_or_after => lambda { :start_at }
+  
+  def can_subscribe?(tournament, user)
+    if tournament.users.count < tournament.max_player && !tournament.users.exists?(user) && tournament.user != user 
+       true
+    else
+      false
+    end
+  end 
+
 end

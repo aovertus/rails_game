@@ -8,7 +8,6 @@ class TournamentsController < ApplicationController
   end
   
   def show
-    @subscribe = true if @tournament.users.exists?(current_user)
   end
   
   def update
@@ -24,10 +23,14 @@ class TournamentsController < ApplicationController
   end
 
   def register
-     if @tournament.users.push(current_user)
-        redirect_to tournament_path(@tournament), notice: 'Subscription done !'
-     else
-       redirect_to tournament_path(@tournament), alert: "Subscription failed !"
+    if @tournament.can_subscribe?(@tournament, current_user)
+       if @tournament.users.push(current_user)
+          redirect_to tournament_path(@tournament), notice: 'Subscription done !'
+       else
+         redirect_to tournament_path(@tournament), alert: "Subscription failed !"
+      end
+    else 
+      redirect_to tournament_path(@tournament), alert: "We've reach the number of participants max !"
     end
   end
   
