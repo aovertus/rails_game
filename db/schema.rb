@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140920142624) do
+ActiveRecord::Schema.define(version: 20140921120544) do
 
   create_table "comments", force: true do |t|
     t.string   "text"
@@ -30,6 +30,20 @@ ActiveRecord::Schema.define(version: 20140920142624) do
     t.string   "image"
   end
 
+  create_table "matches", force: true do |t|
+    t.integer  "tournament_id"
+    t.integer  "game_id"
+    t.integer  "player_one_id"
+    t.integer  "score_one"
+    t.integer  "player_two_id"
+    t.integer  "score_two"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "messages", force: true do |t|
+  end
+
   create_table "sessions", force: true do |t|
     t.string   "session_id", null: false
     t.text     "data"
@@ -39,13 +53,6 @@ ActiveRecord::Schema.define(version: 20140920142624) do
 
   add_index "sessions", ["session_id"], name: "index_sessions_on_session_id", unique: true
   add_index "sessions", ["updated_at"], name: "index_sessions_on_updated_at"
-
-  create_table "subscriptions", force: true do |t|
-    t.integer  "user_id"
-    t.integer  "tournament_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
 
   create_table "tournament_games", force: true do |t|
     t.integer  "game_id"

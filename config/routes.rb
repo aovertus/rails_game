@@ -10,7 +10,9 @@ Rails.application.routes.draw do
       post :sign_up_mail
     end
   end
-  resources :tournaments
+  resources :tournaments do
+    resources :matchs
+  end
   resource :session
   match "/login" => "sessions#new", :as => "login", via: [:get, :post]
   match "/logout" => "sessions#destroy", :as => "logout", via: [:get, :post]
