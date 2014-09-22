@@ -1,13 +1,19 @@
 class MatchesController < ApplicationController
-  before_action :set_match, only: [:update]
+  before_action :set_match, only: [:update, :delete]
+  before_action :set_tournament, only: [:index, :show]
+
   def index
-    @tournament = Tournament.find(params[:tournament_id])
     @users = User.all
     @matches = @tournament.matches.all
   end
   
   def new 
     @match = Match.new
+  end
+  
+  def list
+    #@matches = current_user.player_one_match
+    @matches = current_user.player_one + current_user.player_two
   end
   
   def create
@@ -23,7 +29,13 @@ class MatchesController < ApplicationController
         redirect_to :back, notice: 'Score was successfully updated.' 
       end
   end
-
+  
+  def destroy
+      match = Match.find(params[:id])
+      if match.destroy
+        redirect_to :back, notice: 'Match deleted' 
+      end
+  end
   
   private 
     def match_params
@@ -36,5 +48,9 @@ class MatchesController < ApplicationController
     
     def set_match
       @match= Match.find(params[:id])
+    end
+    
+    def set_tournament
+      @tournament = Tournament.find(params[:tournament_id])
     end
 end

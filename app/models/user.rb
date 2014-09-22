@@ -1,8 +1,10 @@
 require 'digest'
 
-class User < ActiveRecord::Base
+class User < ActiveRecord::Base 
+  
   attr_accessor :password
-  has_many :matches
+  has_many :player_one, :class_name => 'Match', :foreign_key => 'player_one_id'
+  has_many :player_two, :class_name => 'Match', :foreign_key => 'player_two_id'
   has_many :tournaments
   has_many :games, :dependent => :nullify
   has_many :comments, :dependent => :nullify
@@ -14,6 +16,8 @@ class User < ActiveRecord::Base
 
   before_save :encrypt_new_password
   after_create :sign_up_mail
+  
+  
   
   def self.authenticate(email,password)
     user = find_by_email(email)

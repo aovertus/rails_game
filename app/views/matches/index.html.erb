@@ -11,8 +11,13 @@
 				<%= f.select(:score_two, options_for_select(['3', "1", "0"])) %>
 				on
 				<%= match.game.title %>
+				<%= f.hidden_field :id, :value => match.id%>
+				</td>
+				<td>
 				<%= f.submit "Save the score", :class => "btn btn-default"%>
-			</td></tr>
+				<%= button_to "delete", @tournament_match, :method=>:delete, :confirm=>'Are you sure?', :class=>"btn btn-default" %>	
+				</td>
+			</tr>
 		<% end %>
 	<% end %>
 </table>

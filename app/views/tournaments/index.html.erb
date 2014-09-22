@@ -1,14 +1,14 @@
 <div class="row row-offcanvas row-offcanvas-right">
       <h1>Listing tournaments</h1>
       <table class="table">
-            <% @tournaments.each_with_index do |tournament, index| %>
+            <% @tournaments.each do |tournament| %>
             	<tr>
 					<td>
-						Name : <%= link_to tournament.name, tournament_path(tournament.id) %> <br/> 
+						Name : <%= link_to tournament.name, tournament_path(tournament) %> <br/> 
 						Address : <%= tournament.address %> <br/><br/>
 						Start : <%= tournament.start_at.to_time.strftime('%e %B %Y') %> <br/>
 						End  : <%= tournament.end_at.to_time.strftime('%e %B %Y') %> <br/><br/>
-						<% if tournament.is_admin?(tournament, current_user) %> <%= link_to "Match Panel", tournament_matches_path(tournament) %> <% end %>
+						<% if tournament.is_admin?(tournament, current_user) %> <%= link_to "Matches Panel", tournament_matches_path(tournament) %> <% end %>
 					</td>
 					<td><%= image_tag "http://maps.google.com/maps/api/staticmap?size=450x300&sensor=false&zoom=16&markers=#{tournament.latitude}%2C#{tournament.longitude}", :class => "google-map" %></td>
                 </tr>  

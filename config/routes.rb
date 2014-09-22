@@ -38,7 +38,10 @@ Rails.application.routes.draw do
   
   #Register
   match "tournament/:id/register" => "tournaments#register", as: :tournament_register, via: [:get, :post]
-
+  
+  #Match list
+  match "my_matches" => "matches#list", as: :my_matches, via: [:get, :post]
+  
   # Example resource route (maps HTTP verbs to controller actions automatically):
   #   resources :products
 
