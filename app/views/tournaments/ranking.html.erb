@@ -7,7 +7,10 @@
 	    			<th>Score </th>
 	    		</tr>
 	    		<% tournament.users.each do |user| %>
-	    		<tr><td><%= user.email %></td></tr>
+	    		<tr>
+	    			<td><%= user.email %></td>
+	    			<td><%= user.score(tournament) %></td>
+	    		</tr>
 	    		<% end %>
 	    	</table>
 	    

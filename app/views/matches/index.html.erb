@@ -26,13 +26,12 @@
 <% end %>
 <h2>New Match </h2>
 <%= form_for([@tournament, @matches.new]) do |f| %>
-	<%= collection_select(:match, :player_one_id, @users, :id, :email)%>
+	<%= collection_select(:match, :player_one_id, @tournament.users, :id, :email)%>
 	VS
-	<%= collection_select(:match, :player_two_id, @users, :id, :email)%>
+	<%= collection_select(:match, :player_two_id, @tournament.users, :id, :email)%>
 	On : <%= collection_select(:match, :game_id, @tournament.games, :id, :title)%> 
 	<%= f.submit "Create the match", :class => "btn btn-default"%>
 	<br/>&nbsp
 <% end %>
 
-<%= params %>
 

@@ -18,6 +18,10 @@ class User < ActiveRecord::Base
   after_create :sign_up_mail
   
   
+  def score(tournament)
+    score = tournament.matches.where(player_one_id: self.id).sum(:score_one) + tournament.matches.where(player_two_id: self.id).sum(:score_two)
+
+  end
   
   def self.authenticate(email,password)
     user = find_by_email(email)

@@ -5,11 +5,19 @@
 	<tr><td>End : </td><td><%= @tournament.end_at.to_time.strftime('%e %B %Y') %></td></tr>
 	<tr><td>
 		<h3> Games </h3>
-		<ul>
-			<% @tournament.games.each do |game| %>
-				<li><%= game.title %> </li>
-			<% end %>
-		</ul>
+			<ul>
+				<% @tournament.games.each do |game| %>
+					<li><%= game.title %> </li>
+				<% end %>
+			</ul>
+	</td></tr>
+	<tr><td>
+		<h3> Subscribed </h3>
+			<ul>
+				<% @tournament.users.each do |user| %>
+					<li><%= user.email %></li>
+				<% end %>
+			</ul>
 	</td></tr>
 </table>
 <% if logged_in?%>
