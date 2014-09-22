@@ -1,9 +1,9 @@
 <% unless @matches.empty? %>
 	<table class="table">
 		<tr>
-			<th><%= link_to "Player One", :sort => "player_one_id" %></th>
-			<th><%= link_to "Player Two", :sort => "player_two_id" %></th>
-			<th><%= link_to "Game", :sort => "game_id" %></th>
+			<th><%= sortable "player_one_id" %></th>
+			<th><%= sortable "player_two_id" %></th>
+			<th><%= sortable "game_id" %></th>
 			<th>Score</th>
 		</tr>
 		<% @matches.each do |match| %>
@@ -11,7 +11,13 @@
 				<td><%= match.player_one.email %></td>
 				<td><%= match.player_two.email %></td>
 				<td><%= match.game.title %></td>
-				<td><%= match.score_one%> - <%= match.score_two%></td>
+				<td>
+					<% if match.score_one %>
+						<%= match.score_one%> - <%= match.score_two%>
+					<% else %>
+						Currently, not played
+					<% end %>
+				</td>
 				
 			</td></tr>
 		<% end %>

@@ -2,6 +2,7 @@ class MatchesController < ApplicationController
   before_action :set_match, only: [:update, :delete]
   before_action :set_tournament, only: [:index, :show]
   before_filter :authenticate
+  helper_method :sort_column, :sort_direction
 
   def index
     @users = User.all
@@ -9,7 +10,7 @@ class MatchesController < ApplicationController
   end
   
   def all
-    @matches = Match.order(params[:sort])
+    @matches = Match.order(sort_column + " " + sort_direction)
   end
   
   def new 
@@ -59,7 +60,7 @@ class MatchesController < ApplicationController
     end
     
     def sort_column
-      Match.column_names.include?(params[:sort]) ? params[:sort] : "name"
+      Match.column_names.include?(params[:sort]) ? params[:sort] : "id"
     end
     
     def sort_direction
