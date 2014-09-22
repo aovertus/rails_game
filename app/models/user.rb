@@ -2,6 +2,7 @@ require 'digest'
 
 class User < ActiveRecord::Base
   attr_accessor :password
+  has_many :matches
   has_many :tournaments
   has_many :games, :dependent => :nullify
   has_many :comments, :dependent => :nullify

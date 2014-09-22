@@ -1,0 +1,28 @@
+<h1><%= @tournament.name %></h1>
+<h2>Matches list : </h2>
+<table class="table">
+	<% @tournament.matches.each do  |match|%>
+		<%= form_for([@tournament, match]) do |f| %>
+			<tr><td>
+				<%= match.player_one.email %>
+				<%= f.select(:score_one, options_for_select(['3', "1", "0"])) %>
+				vs
+				<%= match.player_two.email %>
+				<%= f.select(:score_two, options_for_select(['3', "1", "0"])) %>
+				on
+				<%= match.game.title %>
+				<%= f.submit "Save the score", :class => "btn btn-default"%>
+			</td></tr>
+		<% end %>
+	<% end %>
+</table>
+<h2>New Match </h2>
+<%= form_for([@tournament, @tournament.matches.new]) do |f| %>
+	<%= collection_select(:match, :player_one_id, @users, :id, :email)%>
+	VS
+	<%= collection_select(:match, :player_two_id, @users, :id, :email)%>
+	On : <%= collection_select(:match, :game_id, @tournament.games, :id, :title)%> 
+	<%= f.submit "Create the match", :class => "btn btn-default"%>
+	<br/>&nbsp
+<% end %>
+

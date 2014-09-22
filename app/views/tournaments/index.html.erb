@@ -8,7 +8,7 @@
 						Address : <%= tournament.address %> <br/><br/>
 						Start : <%= tournament.start_at.to_time.strftime('%e %B %Y') %> <br/>
 						End  : <%= tournament.end_at.to_time.strftime('%e %B %Y') %> <br/><br/>
-						<% if tournament.is_admin?(tournament, current_user) %> <%= link_to "Match Panel", tournament_matchs_path(tournament) %> <% end %>
+						<% if tournament.is_admin?(tournament, current_user) %> <%= link_to "Match Panel", tournament_matches_path(tournament) %> <% end %>
 					</td>
 					<td><%= image_tag "http://maps.google.com/maps/api/staticmap?size=450x300&sensor=false&zoom=16&markers=#{tournament.latitude}%2C#{tournament.longitude}", :class => "google-map" %></td>
                 </tr>  

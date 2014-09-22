@@ -11,8 +11,9 @@ Rails.application.routes.draw do
     end
   end
   resources :tournaments do
-    resources :matchs
+    resources :matches
   end
+  
   resource :session
   match "/login" => "sessions#new", :as => "login", via: [:get, :post]
   match "/logout" => "sessions#destroy", :as => "logout", via: [:get, :post]
