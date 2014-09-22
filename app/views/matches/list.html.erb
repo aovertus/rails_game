@@ -1,14 +1,18 @@
 <% unless @matches.empty? %>
 <h2>My matches :</h2> 
 	<table class="table">
+		<tr>
+			<th>Player One</th>
+			<th>Player Two</th>
+			<th>Game</th>
+			<th>Score</th>
+		</tr>
 		<% @matches.each do |match| %>
-			<tr><td>
-				<%= match.player_one.email %>
-				<strong>vs</strong>
-				<%= match.player_two.email %>
-				<strong>on</strong>
-				<%= match.game.title %>
-				-- Score : <%= match.score_one%> - <%= match.score_two%>
+			<tr>
+				<td><%= match.player_one.email %></td>
+				<td><%= match.player_two.email %></td>
+				<td><%= match.game.title %></td>
+				<td><%= match.score_one%> - <%= match.score_two%></td>
 				
 			</td></tr>
 		<% end %>

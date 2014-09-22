@@ -1,28 +1,29 @@
 <h1><%= @tournament.name %></h1>
 <h2>Matches list : </h2>
 <table class="table">
-	<% @tournament.matches.each do  |match|%>
+	<tr>
+		<th>Player One</th>
+		<th>Player Two</th>
+		<th>Game</th>
+	</tr>
+	<% @matches.each do  |match|%>
 		<%= form_for([@tournament, match]) do |f| %>
-			<tr><td>
-				<%= match.player_one.email %>
-				<%= f.select(:score_one, options_for_select(['3', "1", "0"])) %>
-				vs
-				<%= match.player_two.email %>
-				<%= f.select(:score_two, options_for_select(['3', "1", "0"])) %>
-				on
-				<%= match.game.title %>
+			<tr>
+				<td><%= match.player_one.email %>
+				<%= f.select(:score_one, options_for_select(['3', "1", "0"])) %></td>
+				<td><%= match.player_two.email %>
+				<%= f.select(:score_two, options_for_select(['3', "1", "0"])) %></td>
+				<td><%= match.game.title %></td>
 				<%= f.hidden_field :id, :value => match.id%>
-				</td>
-				<td>
-				<%= f.submit "Save the score", :class => "btn btn-default"%>
-				<%= button_to "delete", @tournament_match, :method=>:delete, :confirm=>'Are you sure?', :class=>"btn btn-default" %>	
+				<td><%= f.submit "Save the score", :method=>:update, :class => "btn btn-default"%></td>
+		<% end %>
+				
 				</td>
 			</tr>
-		<% end %>
 	<% end %>
 </table>
 <h2>New Match </h2>
-<%= form_for([@tournament, @tournament.matches.new]) do |f| %>
+<%= form_for([@tournament, @matches.new]) do |f| %>
 	<%= collection_select(:match, :player_one_id, @users, :id, :email)%>
 	VS
 	<%= collection_select(:match, :player_two_id, @users, :id, :email)%>
@@ -30,4 +31,6 @@
 	<%= f.submit "Create the match", :class => "btn btn-default"%>
 	<br/>&nbsp
 <% end %>
+
+<%= params %>
 

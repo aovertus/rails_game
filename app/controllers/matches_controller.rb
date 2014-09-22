@@ -1,10 +1,11 @@
 class MatchesController < ApplicationController
   before_action :set_match, only: [:update, :delete]
   before_action :set_tournament, only: [:index, :show]
+  before_filter :authenticate
 
   def index
     @users = User.all
-    @matches = @tournament.matches.all
+    @matches = @tournament.matches.order(params[:sort])
   end
   
   def new 
@@ -12,7 +13,6 @@ class MatchesController < ApplicationController
   end
   
   def list
-    #@matches = current_user.player_one_match
     @matches = current_user.player_one + current_user.player_two
   end
   
@@ -52,5 +52,13 @@ class MatchesController < ApplicationController
     
     def set_tournament
       @tournament = Tournament.find(params[:tournament_id])
+    end
+    
+    def sort_column
+      Match.column_names.include?(params[:sort]) ? params[:sort] : "name"
+    end
+    
+    def sort_direction
+      %w[asc desc].include?(params[:direction]) ? params[:direction] : "asc"
     end
 end
