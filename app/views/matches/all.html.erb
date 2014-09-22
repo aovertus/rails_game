@@ -1,6 +1,7 @@
 <% unless @matches.empty? %>
 	<table class="table">
 		<tr>
+			<th><%= sortable "tournament_id" %></th>
 			<th><%= sortable "player_one_id" %></th>
 			<th><%= sortable "player_two_id" %></th>
 			<th><%= sortable "game_id" %></th>
@@ -8,6 +9,7 @@
 		</tr>
 		<% @matches.each do |match| %>
 			<tr>
+				<td><%= match.tournament.name %></td>
 				<td><%= match.player_one.email %></td>
 				<td><%= match.player_two.email %></td>
 				<td><%= match.game.title %></td>

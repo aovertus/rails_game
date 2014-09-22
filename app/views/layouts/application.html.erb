@@ -27,21 +27,7 @@
             <li><%= link_to "Listing Games", games_path %> </li>
             <li><%= link_to "Listing Tournaments", tournaments_path %></li>
             <li><%= link_to "Listing Matches", all_match_path %></li>
-            <li><%= link_to "My matches", my_matches_path %></li>
-            <!--<li><a href="#about">About</a></li>
-            <li><a href="#contact">Contact</a></li>
-            <li class="dropdown">
-              <a href="#" class="dropdown-toggle" data-toggle="dropdown">Dropdown <span class="caret"></span></a>
-              <ul class="dropdown-menu" role="menu">
-                <li><a href="#">Action</a></li>
-                <li><a href="#">Another action</a></li>
-                <li><a href="#">Something else here</a></li>
-                <li class="divider"></li>
-                <li class="dropdown-header">Nav header</li>
-                <li><a href="#">Separated link</a></li>
-                <li><a href="#">One more separated link</a></li>
-              </ul>
-            </li>-->
+            <li><%= link_to "Ranking", ranking_path %></li>
           </ul>
           <ul class="nav navbar-nav navbar-right">
 	    	<% unless current_user %>
@@ -60,6 +46,7 @@
         </div><!--/.nav-collapse -->
       </div>
     </div>
+
 <div class="main">
 	<div class="banner">
 		<center><%= image_tag("banner.png", :alt =>"banner", :class => "img-banner")%></center>

@@ -21,6 +21,10 @@ class TournamentsController < ApplicationController
       end
    end
   end
+  
+  def ranking
+    @tournaments = Tournament.all
+  end
 
   def register
     if @tournament.can_subscribe?(@tournament, current_user)

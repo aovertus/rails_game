@@ -1,0 +1,16 @@
+<h1>Ranking : </h1>
+	<% @tournaments.each do |tournament| %>
+	    <h2><%= tournament.name%></h2>
+	    	<table class="table">
+	    		<tr>
+	    			<th>Email </th>
+	    			<th>Score </th>
+	    		</tr>
+	    		<% tournament.users.each do |user| %>
+	    		<tr><td><%= user.email %></td></tr>
+	    		<% end %>
+	    	</table>
+	    
+	<% end %>
+	
+	
