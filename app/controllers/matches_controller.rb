@@ -8,6 +8,10 @@ class MatchesController < ApplicationController
     @matches = @tournament.matches.order(params[:sort])
   end
   
+  def all
+    @matches = Match.order(params[:sort])
+  end
+  
   def new 
     @match = Match.new
   end

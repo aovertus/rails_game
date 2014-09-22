@@ -41,6 +41,7 @@ Rails.application.routes.draw do
   
   #Match list
   match "my_matches" => "matches#list", as: :my_matches, via: [:get, :post]
+  match "all_match" => "matches#all", as: :all_match, via: [:get, :post] 
   
   # Example resource route (maps HTTP verbs to controller actions automatically):
   #   resources :products
