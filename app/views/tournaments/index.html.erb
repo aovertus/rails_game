@@ -1,5 +1,7 @@
 <div class="row row-offcanvas row-offcanvas-right">
       <h1>Listing tournaments</h1>
+      
+      <% unless @tournaments.empty? %>
       <table class="table">
             <% @tournaments.each do |tournament| %>
             	<tr>
@@ -15,6 +17,8 @@
             <% end %>
        </table>		              
         <br>
-    </div>
-    <%if logged_in? %> <%= link_to "Add tournament", new_tournament_path %> <% end %>
+      <% else %>
+      		No tournament found !
+      <% end %>
+    <p><%if logged_in? %> <%= link_to "Add tournament", new_tournament_path %> <% end %></p>
 </div>
