@@ -6,7 +6,7 @@ class MatchesController < ApplicationController
 
   def index
     @users = User.all
-    @matches = @tournament.matches.order(params[:sort])
+    @matches = @tournament.matches.all
   end
   
   def all
@@ -31,7 +31,15 @@ class MatchesController < ApplicationController
   
   def update   
       if @match.update(score_params)
-        redirect_to :back, notice: 'Score was successfully updated.' 
+        respond_to do |format|
+          format.html {redirect_to tournament_matches_path, :notice => 'Score was successfully updated.'}
+          format.js
+        end
+      else
+        respond_to do |format|
+          format.html {redirect_to tournament_matches_path, :alert => "Score failed to update"}
+          format.js {render "fail_update.js.erb"}
+        end
       end
   end
   

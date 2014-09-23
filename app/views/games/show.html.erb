@@ -7,14 +7,18 @@
   	<td><strong>Note :</strong> <%= @game.note %></td>
   </tr>
 </table>
+
+<div id="comments">
 <strong >Comments :</strong>
   <table class="table">
     <% @game.comments.each do |comment| %>
         <tr><td>"<%= comment.text %>"<cite> by <%= comment.user.email %></cite></td></tr>
     <% end %>
   </table>
+</div>  
+  <!--  link_to "New comment", new_game_comment_path(@game, :format => :js), :remote => true, :id => "new_comment_link" %> -->
+  
   <%= render :file => "app/views/comments/new"%>
-</p>
 
 
 
