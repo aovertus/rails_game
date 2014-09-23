@@ -16,7 +16,7 @@
 					<%= f.select(:score_two, options_for_select(['3', "1", "0"])) %></td>
 					<td><%= match.game.title %></td>
 					<%= f.hidden_field :id, :value => match.id%>
-					<td><%= f.submit "Save the score", :class => "btn btn-default"%> <%= match.id %></td>
+					<td><%= f.submit "Save the score", :class => "btn btn-default"%></td>
 			<% end %>
 					
 					</td>

@@ -16,5 +16,5 @@
        </table>		              
         <br>
     </div>
-    <%= link_to "Add tournament", new_tournament_path %>
+    <%if logged_in? %> <%= link_to "Add tournament", new_tournament_path %> <% end %>
 </div>
