@@ -3,7 +3,13 @@
       <table class="table">
             <% @games.each_with_index do |game, index| %>
             	<tr>
-					 <% if game.image? %><td><%= link_to image_tag(game.image_url.to_s, :class => 'poster'), game_path(game.id)%></td> <% end %>
+					  <td>
+					  	<% if game.image? %>
+					  		<%= link_to image_tag(game.image_url.to_s, :class => 'poster'), game_path(game.id)%>
+					  	<% else %>
+					  		No available image
+					  	<% end %>	
+					  </td> 
 					  <td>
 					  	<strong>Title :</strong><%= game.title %><br/>
 	                    <strong>Note :</strong><%= game.note %><br/>
