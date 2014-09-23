@@ -44,9 +44,12 @@ class MatchesController < ApplicationController
   end
   
   def destroy
-      match = Match.find(params[:id])
-      if match.destroy
-        redirect_to :back, notice: 'Match deleted' 
+      @match = Match.find(params[:id])
+      if @match.destroy
+        respond_to do |format|
+          format.html {redirect_to tournament_matches_path, :notice => "Match deleted"}
+          format.js
+        end
       end
   end
   
