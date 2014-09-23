@@ -4,10 +4,18 @@ class Ability
   def initialize(user)
 
       user ||= User.new # guest user (not logged in)
-      if user.is_admin?
-         can :manage, :all
+      if user.id
+         if user.is_admin?
+           can :manage, :all
+         else
+           can :read, :all
+           can :create, Game
+           can :register, Tournament
+         end
       else
         can :read, :all
+        can :create, User
+        can :read, Match
       end
     #
     # The first argument to `can` is the action you are giving the user

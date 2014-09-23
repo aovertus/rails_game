@@ -17,9 +17,9 @@
   </table>
 </div>  
   <!--  link_to "New comment", new_game_comment_path(@game, :format => :js), :remote => true, :id => "new_comment_link" %> -->
-  
+<% if can? :create, Comment %>  
   <%= render :file => "app/views/comments/new"%>
-
+<% end %>
 
 
 <% if @game.owned_by? current_user %>
