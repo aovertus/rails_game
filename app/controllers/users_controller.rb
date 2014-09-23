@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-  before_filter :authenticate, :only => [:edit, :update]
+  load_and_authorize_resource
   def new
     @user = User.new
   end

@@ -1,8 +1,7 @@
 class TournamentsController < ApplicationController
   before_action :set_tournament, only: [:show, :edit, :update, :destroy, :register]
   before_action :set_games #, only: [:show, :edit, :update, :new]
-  before_filter :authenticate, except: [:show, :index, :ranking]
-  
+  load_and_authorize_resource
   def index
     @tournaments = Tournament.all
   end

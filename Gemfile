@@ -50,7 +50,7 @@ gem 'omniauth-facebook'
 gem 'bootstrap_form'
 gem "geocoder"
 gem 'validates_timeliness'
-
+gem 'cancancan'
 gem "cocoon"
 
 group :production do
