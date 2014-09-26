@@ -1,6 +1,6 @@
 class GamesController < ApplicationController
   before_action :set_game, only: [:show, :edit, :update, :destroy, :notify_friend]
-  load_and_authorize_resource
+  load_and_authorize_resource skip_load_resource only: [:create] 
   # GET /games
   # GET /games.json
   def index

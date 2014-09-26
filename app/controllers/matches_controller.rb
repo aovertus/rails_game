@@ -1,7 +1,7 @@
 class MatchesController < ApplicationController
   before_action :set_match, only: [:update, :delete]
   before_action :set_tournament, only: [:index, :show]
-  load_and_authorize_resource
+  load_and_authorize_resource skip_load_resource only: [:create] 
   helper_method :sort_column, :sort_direction
 
   def index
