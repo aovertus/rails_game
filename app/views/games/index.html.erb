@@ -24,6 +24,6 @@
        </table>		              
         <br>
     </div>
-   <% if current_user %>  <%= link_to image_tag("new_game.png"), new_game_path %> <%end %>
+  <% if can? :create, Game %>  <%= link_to image_tag("new_game.png"), new_game_path %> <%end %>
 </div>
 

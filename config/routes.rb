@@ -14,6 +14,12 @@ Rails.application.routes.draw do
     resources :matches
   end
   
+  ## API
+  
+ namespace :api do
+  resources :games
+ end
+  
   resource :session
   match "/login" => "sessions#new", :as => "login", via: [:get, :post]
   match "/logout" => "sessions#destroy", :as => "logout", via: [:get, :post]

@@ -12,4 +12,9 @@ class Game < ActiveRecord::Base
     return false unless owner.is_a? User
     owner == user
   end
+  
+  
+  def as_json(options={})
+    super(:only => [:id, :title, :note])
+  end
 end

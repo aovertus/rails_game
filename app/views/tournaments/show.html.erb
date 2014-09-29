@@ -20,7 +20,7 @@
 			</ul>
 	</td></tr>
 </table>
-<% if logged_in?%>
+<% if can? :register, Tournament%>
 	<% if @tournament.can_subscribe?(@tournament, current_user) %>
 		<p><%= link_to "Register to the tournament", tournament_register_path %></p> 
 	<% end %>	
