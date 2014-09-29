@@ -24,8 +24,10 @@ class MatchesController < ApplicationController
   def create
     @match = Match.new(match_params)
     @match.tournament = Tournament.find(params[:tournament_id])
-      if @match.save
+      if @match.player_one!=@match.player_two && @match.save
         redirect_to :back, notice: 'Match was successfully created.' 
+      else
+         redirect_to :back, alert: "This is a versus game dude !"
       end
   end
   

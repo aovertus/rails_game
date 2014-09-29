@@ -10,7 +10,7 @@
 						Address : <%= tournament.address %> <br/><br/>
 						Start : <%= tournament.start_at.to_time.strftime('%e %B %Y') %> <br/>
 						End  : <%= tournament.end_at.to_time.strftime('%e %B %Y') %> <br/><br/>
-						<% if tournament.is_admin?(tournament, current_user) %> <%= link_to "Matches Panel", tournament_matches_path(tournament) %> <% end %>
+						<% if can? :edit, Tournament %> <%= link_to "Matches Panel", tournament_matches_path(tournament) %> <% end %>
 					</td>
 					<td><%= image_tag "http://maps.google.com/maps/api/staticmap?size=450x300&sensor=false&zoom=16&markers=#{tournament.latitude}%2C#{tournament.longitude}", :class => "google-map" %></td>
                 </tr>  
@@ -20,5 +20,5 @@
       <% else %>
       		No tournament found !
       <% end %>
-    <p><%if logged_in? %> <%= link_to "Add tournament", new_tournament_path %> <% end %></p>
+    <p><%if can? :create, Tournament %> <%= link_to "Add tournament", new_tournament_path %> <% end %></p>
 </div>

@@ -10,8 +10,28 @@
 		<% @matches.each do |match| %>
 			<tr>
 				<td><%= match.tournament.name %></td>
-				<td><%= match.player_one.email %></td>
-				<td><%= match.player_two.email %></td>
+				<td>
+					<%if match.score_one == 3 %>
+						<span class="win">	
+					<% elsif match.score_on == 1 %>
+						<span class="draw">
+					<% else %>
+						<span class="loose">
+					<% end %>	
+						<%= match.player_one.email %>
+						</span>
+				</td>
+				<td>
+					<%if match.score_two == 3 %>
+						<span class="win">	
+					<% elsif match.score_two == 1 %>
+						<span class="draw">
+					<% else %>
+						<span class="loose">
+					<% end %>	
+						<%= match.player_two.email %>
+						</span>
+				</td>
 				<td><%= match.game.title %></td>
 				<td>
 					<% if match.score_one %>

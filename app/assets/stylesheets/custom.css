@@ -32,6 +32,18 @@ body {
   display: inline-block;
 
 }
+
+.win {
+	color : green;
+}
+
+.draw {
+	color : orange;
+}
+
+.loose{
+	color : red;
+}
  /*
 .pretty th .current {
   padding-right: 12px;
