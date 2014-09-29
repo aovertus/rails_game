@@ -3,10 +3,7 @@ class API::GamesController < ApplicationController
   
   def index
     @games = Game.all
-    respond_to do |format|
-      format.json { render :json => @games }
-    end
-
+    render json: @games
   end
 
 end
