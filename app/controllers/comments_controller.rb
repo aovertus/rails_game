@@ -1,6 +1,6 @@
 class CommentsController < ApplicationController
   before_action :set_comment, only: [:show, :edit, :update, :destroy]
-  load_and_authorize_resource
+  load_and_authorize_resource skip_load_resource only: [:create] 
   # GET /comments/1
   # GET /comments/1.json
   def show
