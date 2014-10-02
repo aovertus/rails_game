@@ -1,5 +1,6 @@
 class API::GamesController < ApplicationController
   before_action :authenticate
+  TOKEN = "railsgames"
 
   def index
     @games = Game.all
@@ -26,7 +27,7 @@ class API::GamesController < ApplicationController
 
     def authenticate
       authenticate_or_request_with_http_token do |token, options|
-        User.find_by(auth_token: token)
+        token == TOKEN
       end
     end
 
