@@ -19,7 +19,7 @@ class UsersController < ApplicationController
   
   def update 
     @user = current_user
-    if @user.update_attribute(params[:user])
+    if @user.update(user_params)
       redirect_to games_path, :notice => "Updated user information successfully"
     else
       render :action => "edit"

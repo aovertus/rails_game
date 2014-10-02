@@ -1,7 +1,7 @@
 <table class="table">
  <% if @game.image? %><tr><td> <%= image_tag @game.image_url.to_s %> </td></tr><% end %>
   <tr>
-  	<td><strong>Title :</strong> <%= @game.title %></td>
+  	<td id="title"><strong>Title :</strong> <%= @game.title %></td>
   </tr>
   <tr>
   	<td><strong>Note :</strong> <%= @game.note %></td>

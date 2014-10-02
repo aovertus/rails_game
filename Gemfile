@@ -52,6 +52,7 @@ gem "geocoder"
 gem 'validates_timeliness'
 gem 'cancan'
 gem "cocoon"
+gem "capybara"
 
 group :production do
   gem 'pg', '0.15.1'

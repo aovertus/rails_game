@@ -6,7 +6,22 @@ class API::GamesController < ApplicationController
     render json: @games, status: 200
   end
 
-  protected
+  def update
+    game = Game.find(params[:id])
+    game.title = params[:title]
+    game.save!
+    render json: game, status: 200
+    # game.update(game_params)
+    # render json: game, status: 200
+   end
+
+  def show
+    game = Game.find(params[:id])
+    render json: game, status: 200
+  end
+
+
+  private
 
 
     def authenticate
@@ -15,5 +30,8 @@ class API::GamesController < ApplicationController
       end
     end
 
-
+    def game_params
+      params.require(:game).permit(:title, :note, :image)
+    end
 end
+
