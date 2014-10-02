@@ -173,6 +173,7 @@ GEM
       timeliness (~> 0.3.6)
 
 PLATFORMS
+  ruby
   x86-mingw32
 
 DEPENDENCIES
