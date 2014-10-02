@@ -19,6 +19,8 @@ Rails.application.routes.draw do
  namespace :api do
   resources :games
  end
+
+
   
   resource :session
   match "/login" => "sessions#new", :as => "login", via: [:get, :post]
@@ -30,6 +32,7 @@ Rails.application.routes.draw do
   match 'auth/:provider/callback', to: 'sessions#create', via: [:get, :post]
   match 'auth/failure', to: redirect('/'), via: [:get, :post]
   match 'signout', to: 'sessions#destroy', as: 'signout', via: [:get, :post]
+
   
 
 

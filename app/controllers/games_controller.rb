@@ -42,7 +42,7 @@ class GamesController < ApplicationController
   # PATCH/PUT /games/1
   # PATCH/PUT /games/1.json
   def update
-    if @game.user.id == current_user.id
+    # if @game.user.id == current_user.id
       respond_to do |format|
         if @game.update(game_params)
           format.html { redirect_to @game, notice: 'Game was successfully updated.' }
@@ -52,9 +52,9 @@ class GamesController < ApplicationController
           format.json { render json: @game.errors, status: :unprocessable_entity }
         end
       end
-    else
-      redirect_to root_path, :alert => "Not permitted"
-    end
+    # else
+    #   redirect_to root_path, :alert => "Not permitted"
+    # end
   end
 
   # DELETE /games/1
